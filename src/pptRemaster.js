@@ -128,7 +128,7 @@ export async function generateRemasteredPptx(products, options) {
   pres.defineLayout({ name: 'A5_LANDSCAPE', width: 8.26, height: 5.82 });
   pres.layout = 'A5_LANDSCAPE';
 
-  // Motives Palette
+  // Elegant Color Palette
   const COLOR_NAVY = '1F4E79';
   const COLOR_GOLD = 'B8860B';
   const COLOR_MUTED = '78909C';

@@ -203,8 +203,8 @@ export default function App() {
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-slate-900 leading-tight">Motives Enterprise Portal</h1>
-              <p className="text-xs text-slate-500">All-in-One Cloud Platform // Pan Home Benchmark & PPT Remaster</p>
+              <h1 className="text-lg font-bold text-slate-900 leading-tight">Home Tool</h1>
+              <p className="text-xs text-slate-500">Personal Merchandising & Productivity Suite // Benchmark & PPT Remaster</p>
             </div>
           </div>
 
@@ -687,7 +687,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
-        Motives Enterprise Portal // Hosted on Cloudflare Pages // All-in-One Merchandising Platform
+        Home Tool // Hosted on Cloudflare Pages // Pan Home Benchmark & PPT Remaster
       </footer>
     </div>
   );

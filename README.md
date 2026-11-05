@@ -1,4 +1,4 @@
-# Motives Enterprise Portal (All-in-One)
+# Home Tool (All-in-One)
 
 Hệ thống web merchandising và chào hàng quốc tế tích hợp 2 công cụ cốt lõi:
 1. **📊 Pan Home Price Comparator**: Đọc file báo giá Excel (FOB Hải Phòng), lọc sạch dữ liệu kích thước, đối chuẩn tự động với giá bán lẻ niêm yết tại Pan Home UAE (`panhomestores.com`), tính tỷ lệ markup và xuất file Excel chuẩn format kèm hyperlink trực tiếp.

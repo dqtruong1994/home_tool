@@ -138,7 +138,7 @@ export async function generateRemasteredPptx(products, options) {
   const cover = pres.addSlide();
   cover.background = { color: COLOR_BG_LIGHT };
 
-  cover.addText("MOTIVES VIETNAM", {
+  cover.addText("PRODUCT COLLECTION", {
     x: 0.8, y: 1.5, w: 6.6, h: 0.4,
     fontFace: "Segoe UI", fontSize: 13, bold: true, color: COLOR_GOLD
   });
@@ -278,7 +278,7 @@ export async function generateRemasteredPptx(products, options) {
     });
   }
 
-  const outFileName = `Motives_Presentation_${collectionTitle.replace(/[^a-zA-Z0-9]/g, '_')}_Remastered.pptx`;
+  const outFileName = `Presentation_${collectionTitle.replace(/[^a-zA-Z0-9]/g, '_')}_Remastered.pptx`;
   await pres.writeFile({ fileName: outFileName });
   return {
     totalImages: products.length,

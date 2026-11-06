@@ -1,0 +1,161 @@
+{
+  "base_url": "https://www.panhomestores.com/uae_en/",
+  "material_aliases": {
+    "abaca": "abaca",
+    "bamboo": "bamboo",
+    "jute": "jute",
+    "rattan": "rattan",
+    "seagrass": "seagrass",
+    "sea grass": "seagrass",
+    "water hyacinth": "water_hyacinth",
+    "water hyacith": "water_hyacinth",
+    "paper": "paper",
+    "paper rope": "paper",
+    "dupont paper": "paper",
+    "cotton": "cotton",
+    "poly wicker": "poly_rattan",
+    "poly rattan": "poly_rattan",
+    "ceramic": "ceramic",
+    "marble": "marble",
+    "polyresin": "polyresin",
+    "wood": "wood",
+    "acacia wood": "wood",
+    "rubber wood": "wood",
+    "oak wood": "wood",
+    "raffia": "natural_fiber",
+    "banana bark": "natural_fiber",
+    "palm leaf": "natural_fiber",
+    "corn leaf": "natural_fiber",
+    "agel fiber": "natural_fiber"
+  },
+  "targets": [
+    {
+      "name": "Table Lamp",
+      "category_path": "accessories/lighting/lamps/table-lamps",
+      "app_category": "Table Lamp",
+      "include_unfiltered": true,
+      "materials": [
+        {"id": 10153, "name": "Abaca", "app_material": "abaca"},
+        {"id": 8944, "name": "Bamboo", "app_material": "bamboo"},
+        {"id": 9116, "name": "Jute", "app_material": "jute"},
+        {"id": 9112, "name": "Paper", "app_material": "paper"},
+        {"id": 3992, "name": "Rattan", "app_material": "rattan"},
+        {"id": 8908, "name": "Ceramic", "app_material": "ceramic"},
+        {"id": 637, "name": "Marble", "app_material": "marble"},
+        {"id": 9091, "name": "Polyresin", "app_material": "polyresin"},
+        {"id": 392, "name": "Wood", "app_material": "wood"},
+        {"id": 11251, "name": "Rubber Wood", "app_material": "wood"},
+        {"id": 365, "name": "Metal", "app_material": null}
+      ]
+    },
+    {
+      "name": "Floor Lamp",
+      "category_path": "accessories/lighting/lamps/floor-lamps",
+      "app_category": "Floor Lamp",
+      "include_unfiltered": true,
+      "materials": [
+        {"id": 10153, "name": "Abaca", "app_material": "abaca"},
+        {"id": 8944, "name": "Bamboo", "app_material": "bamboo"},
+        {"id": 9116, "name": "Jute", "app_material": "jute"},
+        {"id": 9112, "name": "Paper", "app_material": "paper"},
+        {"id": 3992, "name": "Rattan", "app_material": "rattan"},
+        {"id": 9091, "name": "Polyresin", "app_material": "polyresin"},
+        {"id": 392, "name": "Wood", "app_material": "wood"},
+        {"id": 365, "name": "Metal", "app_material": null}
+      ]
+    },
+    {
+      "name": "Pendant Lamp",
+      "category_path": "accessories/lighting/lamps/ceiling-lamps",
+      "app_category": "Pendant Lamp",
+      "include_unfiltered": true,
+      "materials": [
+        {"id": 9116, "name": "Jute", "app_material": "jute"},
+        {"id": 9112, "name": "Paper", "app_material": "paper"},
+        {"id": 32269, "name": "DuPont Paper", "app_material": "paper"},
+        {"id": 9129, "name": "Raffia", "app_material": "natural_fiber"},
+        {"id": 3992, "name": "Rattan", "app_material": "rattan"},
+        {"id": 19753, "name": "Corn Leaf", "app_material": "natural_fiber"},
+        {"id": 392, "name": "Wood", "app_material": "wood"},
+        {"id": 32278, "name": "Sea Shell", "app_material": null},
+        {"id": 365, "name": "Metal", "app_material": null}
+      ]
+    },
+    {
+      "name": "Planter",
+      "category_path": "accessories/garden/garden-pots-planters",
+      "app_category": "Planter",
+      "include_unfiltered": true,
+      "materials": [
+        {"id": 23799, "name": "Poly Wicker", "app_material": "poly_rattan"},
+        {"id": 3992, "name": "Rattan", "app_material": "rattan"},
+        {"id": 8944, "name": "Bamboo", "app_material": "bamboo"},
+        {"id": 9116, "name": "Jute", "app_material": "jute"},
+        {"id": 8908, "name": "Ceramic", "app_material": "ceramic"},
+        {"id": 9091, "name": "Polyresin", "app_material": "polyresin"},
+        {"id": 637, "name": "Marble", "app_material": "marble"},
+        {"id": 8931, "name": "Acacia Wood", "app_material": "wood"},
+        {"id": 365, "name": "Metal", "app_material": null}
+      ]
+    },
+    {
+      "name": "Storage",
+      "category_path": "accessories/utility-storage/storage",
+      "app_category": "Storage",
+      "include_unfiltered": true,
+      "title_category_rules": {
+        "\\btray\\b": "Tray",
+        "\\b(basket|hamper)s?\\b": "Basket"
+      },
+      "materials": [
+        {"id": 8944, "name": "Bamboo", "app_material": "bamboo"},
+        {"id": 19037, "name": "Banana Bark", "app_material": "natural_fiber"},
+        {"id": 10947, "name": "Agel Fiber", "app_material": "natural_fiber"},
+        {"id": 7994, "name": "Cotton", "app_material": "cotton"},
+        {"id": 9116, "name": "Jute", "app_material": "jute"},
+        {"id": 9112, "name": "Paper", "app_material": "paper"},
+        {"id": 10384, "name": "Paper Rope", "app_material": "paper"},
+        {"id": 3992, "name": "Rattan", "app_material": "rattan"},
+        {"id": 10392, "name": "Sea Grass", "app_material": "seagrass"},
+        {"id": 9530, "name": "Seagrass", "app_material": "seagrass"},
+        {"id": 10989, "name": "Water Hyacinth", "app_material": "water_hyacinth"},
+        {"id": 23772, "name": "Water Hyacith", "app_material": "water_hyacinth"},
+        {"id": 23781, "name": "Palm Leaf", "app_material": "natural_fiber"},
+        {"id": 392, "name": "Wood", "app_material": "wood"},
+        {"id": 365, "name": "Metal", "app_material": null}
+      ]
+    },
+    {
+      "name": "Boxes & Trays",
+      "category_path": "accessories/home-decor/decor-accessories/boxes-trays",
+      "app_category": "Storage",
+      "include_unfiltered": true,
+      "title_category_rules": {
+        "\\btray\\b": "Tray",
+        "\\b(basket|hamper)s?\\b": "Basket"
+      },
+      "materials": [
+        {"id": 3992, "name": "Rattan", "app_material": "rattan"},
+        {"id": 392, "name": "Wood", "app_material": "wood"},
+        {"id": 8908, "name": "Ceramic", "app_material": "ceramic"},
+        {"id": 9091, "name": "Polyresin", "app_material": "polyresin"},
+        {"id": 637, "name": "Marble", "app_material": "marble"},
+        {"id": 365, "name": "Metal", "app_material": null}
+      ]
+    },
+    {
+      "name": "Wall Decor",
+      "category_path": "accessories/wall-decor/wall-art",
+      "app_category": "Wall Decor",
+      "include_unfiltered": true,
+      "materials": [
+        {"id": 9112, "name": "Paper", "app_material": "paper"},
+        {"id": 9129, "name": "Raffia", "app_material": "natural_fiber"},
+        {"id": 7994, "name": "Cotton", "app_material": "cotton"},
+        {"id": 392, "name": "Wood", "app_material": "wood"},
+        {"id": 8904, "name": "Oak Wood", "app_material": "wood"},
+        {"id": 365, "name": "Metal", "app_material": null}
+      ]
+    }
+  ]
+}

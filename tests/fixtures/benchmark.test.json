@@ -1,0 +1,194 @@
+{
+  "dimensionTolerance": 0.2,
+  "sizeRoundingToleranceCm": 1,
+  "products": {
+    "RATTAN_ABACA_TABLE_LAMP": {
+      "title": "Cerah E27 Abaca Table Lamp",
+      "category": "Table Lamp",
+      "specs": "Sợi Abaca/mây tự nhiên đan thủ công / Chao vải | Dia 30 x H49 cm",
+      "price_aed": 429,
+      "url": "https://www.panhomestores.com/uae_en/cerah-e27-abaca-table-lamp-dia-30x49cm-natural-181plc9900036",
+      "dimensions": [
+        30,
+        30,
+        49
+      ],
+      "materials": [
+        "abaca"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "BAMBOO_CAPIZ_TABLE_LAMP": {
+      "title": "Okra E27 Bamboo & Capiz Shell Lamp",
+      "category": "Table Lamp",
+      "specs": "Nan tre đan & cẩn vỏ điệp Capiz tự nhiên | 30 x 30 x H60 cm",
+      "price_aed": 331,
+      "url": "https://www.panhomestores.com/uae_en/okra-e27-table-lamp-30x60cm-natural-181ato9900131",
+      "dimensions": [
+        30,
+        30,
+        60
+      ],
+      "materials": [
+        "bamboo",
+        "capiz"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "MOP_MARBLE_TABLE_LAMP": {
+      "title": "Valir E27 Marble / MOP Mosaic Lamp",
+      "category": "Table Lamp",
+      "specs": "Khảm hoa văn xà cừ / Chân trụ vững | Dia 33 x H62 cm",
+      "price_aed": 389,
+      "url": "https://www.panhomestores.com/uae_en/valir-e27-marble-table-lamp-dia-33x62cm-black-181ato9900802",
+      "dimensions": [
+        33,
+        33,
+        62
+      ],
+      "materials": [
+        "marble"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "CERAMIC_TABLE_LAMP": {
+      "title": "Denver E27 Ceramic Table Lamp",
+      "category": "Table Lamp",
+      "specs": "Thân gốm nghệ thuật / Chao vải dệt | 36 x 36 x H61 cm",
+      "price_aed": 349,
+      "url": "https://www.panhomestores.com/uae_en/denver-e27-ceramic-table-lamp-36x61cm-white-black-181aic9904485",
+      "dimensions": [
+        36,
+        36,
+        61
+      ],
+      "materials": [
+        "ceramic"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "ACCENT_UPLIGHT_LAMP": {
+      "title": "Merrel G-9 Decorative Accent Lamp",
+      "category": "Accent Lamp",
+      "specs": "Đèn bàn decor nhỏ gọn / Vỏ điệp gốm | 19.5 x 19.5 x H29 cm",
+      "price_aed": 199,
+      "url": "https://www.panhomestores.com/uae_en/merrel-g-9-ceramic-table-lamp-19-5x19-5x29cm-black-181aic9902454",
+      "dimensions": [
+        19.5,
+        19.5,
+        29
+      ],
+      "materials": [
+        "ceramic"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "FLOOR_LAMP_OKRA_TALL": {
+      "title": "Okra E27 Natural Woven Floor Lamp",
+      "category": "Floor Lamp",
+      "specs": "Cây đèn đứng sợi tự nhiên đan khung kim loại | 43 x 43 x H160 cm",
+      "price_aed": 649,
+      "url": "https://www.panhomestores.com/uae_en/okra-e27-floor-lamp-43x160cm-natural-181ato9900132",
+      "dimensions": [
+        43,
+        43,
+        160
+      ],
+      "materials": [
+        "natural_fiber"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "FLOOR_LAMP_CALDEA": {
+      "title": "Caldea E27 Natural Fiber Floor Lamp",
+      "category": "Floor Lamp",
+      "specs": "Khung composite vân gỗ / Sợi tự nhiên | 82 x 82 x H160 cm",
+      "price_aed": 649,
+      "url": "https://www.panhomestores.com/uae_en/caldea-e27-polyresin-floor-lamp-82x160cm-brown-181hel9900722",
+      "dimensions": [
+        82,
+        82,
+        160
+      ],
+      "materials": [
+        "polyresin"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "PENDANT_SHADE_SARI": {
+      "title": "Sari Handwoven Natural Pendant Shade",
+      "category": "Pendant Lamp",
+      "specs": "Chao đèn thả sợi mây tre đan thủ công | 29 x 29 x H9 cm",
+      "price_aed": 149,
+      "url": "https://www.panhomestores.com/uae_en/sari-handwoven-pendant-shade-29x29x9cm-natural-181ato9900183",
+      "dimensions": [
+        29,
+        29,
+        9
+      ],
+      "materials": [
+        "natural_fiber"
+      ],
+      "price_checked_at": null,
+      "scope": "shade_only"
+    },
+    "PENDANT_WOODEN_ASHEN": {
+      "title": "Ashen 24W Wooden Natural Pendant Lamp",
+      "category": "Pendant Lamp",
+      "specs": "Đèn thả thanh nan gỗ tự nhiên | 80 x 80 x H50 cm",
+      "price_aed": 450,
+      "url": "https://www.panhomestores.com/uae_en/ashen-24w-led-3000k-wooden-pendant-lamp-80x50cm-natural-181ato99001404",
+      "dimensions": [
+        80,
+        80,
+        50
+      ],
+      "materials": [
+        "wood"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "BASKET_SEAGRASS_TEZZA": {
+      "title": "Tezza Seagrass Storage Basket (White Rim)",
+      "category": "Basket",
+      "specs": "Cói tự nhiên dệt phối màu có quai xách | 40 x 45 x H38 cm",
+      "price_aed": 119,
+      "url": "https://www.panhomestores.com/uae_en/tezza-seagrass-storage-basket-40x45x38cm-natural-white-262tbd9900160",
+      "dimensions": [
+        40,
+        45,
+        38
+      ],
+      "materials": [
+        "seagrass"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    },
+    "BASKET_SEAGRASS_ESTELLA": {
+      "title": "Estella Seagrass Storage Basket (Natural)",
+      "category": "Basket",
+      "specs": "Cói đan dáng tròn có quai xách chắc chắn | 28 x 30 x H30 cm",
+      "price_aed": 98,
+      "url": "https://www.panhomestores.com/uae_en/estella-seagrass-storage-basket-28x30x30cm-natural-262tbd9900159",
+      "dimensions": [
+        28,
+        30,
+        30
+      ],
+      "materials": [
+        "seagrass"
+      ],
+      "price_checked_at": null,
+      "scope": "complete"
+    }
+  }
+}

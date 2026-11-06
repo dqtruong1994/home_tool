@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+user_data_dir/
+chrome_debug_profile/
+output/run.lock
+output/*.tmp
+output/captured_json.jsonl
+output/debug_structure.json
+output/*.backup-*.json

@@ -4,7 +4,7 @@ import {
   ArrowUpDown, RefreshCw, CheckCircle2, AlertCircle, Sparkles, Building2, Globe,
   Presentation, Layers, Image as ImageIcon, Sliders, Check
 } from 'lucide-react';
-import { parseExcelClientSide, exportToExcelClientSide, EXCHANGE_RATE_DEFAULT } from './catalog';
+import { parseExcelClientSide, exportToExcelClientSide, EXCHANGE_RATE_DEFAULT, reprice } from './catalog';
 import { extractImagesFromPptx, generateRemasteredPptx } from './pptRemaster';
 
 export default function App() {
@@ -13,11 +13,14 @@ export default function App() {
   // ==========================================
   // STATE: PRICE COMPARATOR
   // ==========================================
-  const [data, setData] = useState(null);
+  const [sourceData, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [fileName, setFileName] = useState('');
   const [exchangeRate, setExchangeRate] = useState(EXCHANGE_RATE_DEFAULT);
+  const validRate = Number.isFinite(Number(exchangeRate)) && Number(exchangeRate) > 0;
+  const data = useMemo(() => sourceData && validRate ? reprice(sourceData.items, Number(exchangeRate), sourceData.warnings) : null, [sourceData, exchangeRate, validRate]);
+
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -46,34 +49,16 @@ export default function App() {
     setLoading(true);
     setError(null);
     setFileName(file.name);
+    setData(null);
+    setSelectedCategory('ALL');
 
     try {
-      let result = null;
-      try {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('rate', exchangeRate);
-
-        const res = await fetch('http://localhost:8000/api/compare', {
-          method: 'POST',
-          body: formData
-        });
-        if (res.ok) {
-          result = await res.json();
-        }
-      } catch (backendErr) {
-        console.log('Using client-side engine');
-      }
-
-      if (!result) {
-        const buffer = await file.arrayBuffer();
-        result = parseExcelClientSide(buffer, exchangeRate);
-      }
-
+      const buffer = await file.arrayBuffer();
+      const result = parseExcelClientSide(buffer, exchangeRate);
       setData(result);
     } catch (err) {
       console.error(err);
-      setError('Lỗi khi đọc file Excel. Vui lòng kiểm tra định dạng file .xlsx.');
+      setError(err.message || 'Lỗi khi đọc file Excel.');
     } finally {
       setLoading(false);
     }
@@ -81,29 +66,8 @@ export default function App() {
 
   const handleExport = async () => {
     if (!data || !data.items || data.items.length === 0) return;
-    try {
-      const res = await fetch('http://localhost:8000/api/export', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items: data.items,
-          exchange_rate: exchangeRate
-        })
-      });
-      if (res.ok) {
-        const blob = await res.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Ket_qua_so_sanh_gia_Pan_Home.xlsx';
-        a.click();
-        return;
-      }
-    } catch (e) {
-      console.log('Using client-side export');
-    }
-
-    exportToExcelClientSide(data.items, exchangeRate);
+    try { exportToExcelClientSide(data.items, Number(exchangeRate)); }
+    catch (err) { setError(err.message || 'Không thể xuất Excel.'); }
   };
 
   const filteredItems = useMemo(() => {
@@ -125,6 +89,8 @@ export default function App() {
       .sort((a, b) => {
         let valA = a[sortField];
         let valB = b[sortField];
+        if (valA == null) return valB == null ? 0 : 1;
+        if (valB == null) return -1;
         if (typeof valA === 'string') {
           return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
         }
@@ -314,7 +280,7 @@ export default function App() {
                     Cấu hình đối chuẩn
                   </h2>
                   <p className="text-xs text-slate-500 mb-4">
-                    Tỷ giá neo cố định của Ngân hàng Trung ương UAE: 1 USD = 3.6725 AED.
+                    Tỷ giá mặc định 3.6725 AED/USD. Thay đổi tỷ giá sẽ tính lại bảng và file xuất.
                   </p>
 
                   <div className="space-y-4">
@@ -326,7 +292,8 @@ export default function App() {
                         type="number"
                         step="0.0001"
                         value={exchangeRate}
-                        onChange={(e) => setExchangeRate(parseFloat(e.target.value) || EXCHANGE_RATE_DEFAULT)}
+                        min="0.0001"
+                        onChange={(e) => setExchangeRate(e.target.value)}
                         className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
                       />
                     </div>
@@ -337,12 +304,13 @@ export default function App() {
                       </div>
                       <div className="flex justify-between text-slate-500">
                         <span>Tiêu chuẩn giá:</span>
-                        <span className="font-semibold text-slate-700">Regular Price (Giá gốc)</span>
+                        <span className="font-semibold text-slate-700">Catalog tham khảo</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
+                {!validRate && <p className="text-sm text-red-700 mt-2">Tỷ giá phải là số lớn hơn 0.</p>}
                 {data && (
                   <button
                     onClick={handleExport}
@@ -358,27 +326,31 @@ export default function App() {
             {/* Results Table & Summary Cards */}
             {data && data.items && (
               <div className="space-y-6">
+                <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-900">
+                  Gợi ý yêu cầu cùng loại, vật liệu phù hợp và mỗi chiều kích thước lệch tối đa 20%. Cần xác nhận kiểu dáng, màu sắc, phụ kiện và giá trên nguồn bán trước khi dùng kết quả.
+                  {data.warnings?.length > 0 && <ul className="list-disc pl-5 mt-2">{data.warnings.map((warning,i)=><li key={i}>{warning}</li>)}</ul>}
+                </div>
                 {/* Metric Summary Cards */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                   <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                     <p className="text-xs font-semibold text-slate-400 uppercase">Tổng số sản phẩm</p>
                     <p className="text-2xl font-bold text-slate-900 mt-1">{data.summary.total_items} SP</p>
-                    <p className="text-xs text-emerald-600 mt-1 font-medium">Đối chuẩn thành công 100%</p>
+                    <p className="text-xs text-emerald-600 mt-1 font-medium">{data.summary.candidate_items} gợi ý / {data.summary.unmatched_items} chưa đối chiếu</p>
                   </div>
                   <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p className="text-xs font-semibold text-slate-400 uppercase">Tổng giá FOB nội bộ</p>
+                    <p className="text-xs font-semibold text-slate-400 uppercase">Cộng đơn giá FOB</p>
                     <p className="text-2xl font-bold text-blue-700 mt-1">${data.summary.total_fob_usd.toLocaleString()} USD</p>
-                    <p className="text-xs text-slate-400 mt-1">Giá xuất khẩu Hải Phòng</p>
+                    <p className="text-xs text-slate-400 mt-1">Mỗi mã một lần, chưa nhân số lượng</p>
                   </div>
                   <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p className="text-xs font-semibold text-slate-400 uppercase">Tổng giá niêm yết Pan Home</p>
-                    <p className="text-2xl font-bold text-indigo-700 mt-1">${data.summary.total_retail_usd.toLocaleString()} USD</p>
-                    <p className="text-xs text-slate-400 mt-1">({data.summary.total_retail_aed.toLocaleString()} AED)</p>
+                    <p className="text-xs font-semibold text-slate-400 uppercase">Cộng giá tham khảo có gợi ý</p>
+                    <p className="text-2xl font-bold text-indigo-700 mt-1">{data.summary.total_retail_usd == null ? '—' : `$${data.summary.total_retail_usd.toLocaleString()} USD`}</p>
+                    <p className="text-xs text-slate-400 mt-1">{data.summary.total_retail_aed == null ? 'Chưa có đối chiếu' : `${data.summary.total_retail_aed.toLocaleString()} AED`}</p>
                   </div>
                   <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                     <p className="text-xs font-semibold text-slate-400 uppercase">Tỷ lệ Bán lẻ / FOB TB</p>
-                    <p className="text-2xl font-bold text-amber-600 mt-1">{data.summary.avg_markup_ratio}x</p>
-                    <p className="text-xs text-slate-400 mt-1">Hệ số biên độ thị trường UAE</p>
+                    <p className="text-2xl font-bold text-amber-600 mt-1">{data.summary.avg_markup_ratio == null ? '—' : `${data.summary.avg_markup_ratio}x`}</p>
+                    <p className="text-xs text-slate-400 mt-1">Chỉ tính các dòng có gợi ý, giá chưa xác minh</p>
                   </div>
                 </div>
 
@@ -431,10 +403,10 @@ export default function App() {
                           <th className="py-3 px-3 text-right cursor-pointer" onClick={() => toggleSort('fob_price')}>
                             <div className="flex items-center justify-end gap-1">FOB (USD) <ArrowUpDown className="w-3 h-3 text-slate-400" /></div>
                           </th>
-                          <th className="py-3 px-4">SP tương đương Pan Home</th>
-                          <th className="py-3 px-3 text-right">Giá gốc (AED)</th>
+                          <th className="py-3 px-4">Gợi ý đối chiếu Pan Home</th>
+                          <th className="py-3 px-3 text-right">Giá tham khảo (AED)</th>
                           <th className="py-3 px-3 text-right cursor-pointer" onClick={() => toggleSort('retail_usd')}>
-                            <div className="flex items-center justify-end gap-1">Giá gốc (USD) <ArrowUpDown className="w-3 h-3 text-slate-400" /></div>
+                            <div className="flex items-center justify-end gap-1">Giá tham khảo (USD) <ArrowUpDown className="w-3 h-3 text-slate-400" /></div>
                           </th>
                           <th className="py-3 px-3 text-right cursor-pointer" onClick={() => toggleSort('markup_ratio')}>
                             <div className="flex items-center justify-end gap-1">Tỷ lệ x <ArrowUpDown className="w-3 h-3 text-slate-400" /></div>
@@ -454,19 +426,21 @@ export default function App() {
                             <td className="py-3 px-4">
                               <div className="font-semibold text-blue-900">{item.matched_title}</div>
                               <div className="text-[11px] text-slate-500">{item.matched_specs}</div>
+                              <div className="text-[11px] mt-1 text-slate-600">{item.category} · {item.match_reason}</div>
+                              {item.warnings?.map((warning,i) => <div key={i} className="text-[11px] text-amber-700 mt-1">{warning}</div>)}
                             </td>
-                            <td className="py-3 px-3 text-right font-mono text-slate-700">{item.retail_aed.toLocaleString()} AED</td>
-                            <td className="py-3 px-3 text-right font-bold text-indigo-700">${item.retail_usd.toFixed(2)}</td>
-                            <td className="py-3 px-3 text-right font-bold text-amber-600">{item.markup_ratio}x</td>
+                            <td className="py-3 px-3 text-right font-mono text-slate-700">{item.retail_aed == null ? '—' : `${item.retail_aed.toLocaleString()} AED`}</td>
+                            <td className="py-3 px-3 text-right font-bold text-indigo-700">{item.retail_usd == null ? '—' : `$${item.retail_usd.toFixed(2)}`}</td>
+                            <td className="py-3 px-3 text-right font-bold text-amber-600">{item.markup_ratio == null ? '—' : `${item.markup_ratio}x`}</td>
                             <td className="py-3 px-3 text-center">
-                              <a
+                              {item.url && <a
                                 href={item.url}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200 text-[11px] font-medium transition-colors"
                               >
                                 Xem SP <ExternalLink className="w-3 h-3" />
-                              </a>
+                              </a>}
                             </td>
                           </tr>
                         ))}
